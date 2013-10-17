@@ -1,0 +1,41 @@
+{
+    "name": "candy",
+    "version": "0.0.1",
+    "private": false,
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "connect": "2.9.0",
+        "commander": "2.0.0",
+        "range-parser": "0.0.4",
+        "mkdirp": "0.3.5",
+        "cookie": "0.1.0",
+        "buffer-crc32": "0.2.1",
+        "fresh": "0.2.0",
+        "methods": "0.0.1",
+        "send": "0.1.4",
+        "cookie-signature": "1.0.1",
+        "debug": "*",
+        "mongodb": "*",
+        "connect-mongo": "*",
+        "connect-flash" : "*",
+        "markdown" : "*",
+        "hogan.js" : "*"
+    },
+    "keywords": [
+        "candy",
+        "framework",
+        "sinatra",
+        "web",
+        "rest",
+        "restful",
+        "router",
+        "app",
+        "api"
+    ],
+    "main": "index",
+    "engines": {
+        "node": "*"
+    }
+}
