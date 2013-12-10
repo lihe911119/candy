@@ -1,0 +1,38 @@
+Candy的设计思想
+
+结合Connect与Express的设计理念，再结合Struts2的设计理念。根据Node.js的适用性，设计Candy Web Framework。
+
+当Request到来时，最先经历的是front-end middleware:
+
+系统级 front-end middleware模块：
+为用户提供use接口，传参指定url pattern，并指定回调函数，回调函数只接受request与response两个参数；
+内部调用handle方法，每一个request到来时，调用此方法递归调用注册的front-end middleware，前提是符合request的url pattern；
+内置多个默认会执行的middle ware，主要用来封装和强化request和response对象，以及优化请求报文；
+
+用户级 back-end middleware模块：
+为用户提供可扩展对象与接口，方便用户实现自己的中间件。
+通过config模块的配置功能...
+
+config模块:
+config.json配置文件的格式,package --> action，package具备可继承性，根据配置文件来自动生成路由规则（映射规则），
+也就是一个action对象（route对象），一个action对象应该具备自己url pattern，自己的业务实现（用户编写），自己的后端中间件堆栈，
+自己的返回结果集（条件返回）。在编写上，要求用户如此编写：
+    package结构 --> 一个Node.js的module，也就是一个js文件，
+    action的业务实现 --> 一个js方法，通过module对象暴露出来。
+程序在启动时，框架负责读取配置文件，并生成多个路由对象，包的继承只应体现在配置上，包括统一的返回类型，统一的中间件堆栈等，
+但是路由（每一个action）仍可以存在自定义的返回类型集与中间件堆栈。
+
+patch模块：
+强化request与response对象，维持一个全局的application作用域，针对于每一个访问者的session作用域（处理cookie）
+
+result模块：
+提供多个内置的返回类型，由config模块根据配置文件，在生成路由对象时，自动映射到用户配置的返回结果，包括：
+    基于hogan.js与mustache的扩展模板引擎（candy提供）
+    ejs模板引擎支持
+    json返回结果（用户构建RESTful Webservice）
+
+utils模块
+提供了一系列的工具包方法，包括核心的方法也包括一些零散的方法，可根据功能划分为多个js模块，
+并再创建一个单一的index.js作为模块接口暴露出来
+
+
