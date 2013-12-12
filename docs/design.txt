@@ -22,6 +22,10 @@ config.json配置文件的格式,package --> action，package具备可继承性�
 程序在启动时，框架负责读取配置文件，并生成多个路由对象，包的继承只应体现在配置上，包括统一的返回类型，统一的中间件堆栈等，
 但是路由（每一个action）仍可以存在自定义的返回类型集与中间件堆栈。
 
+action模块:
+action模块用来定义action对象，一个请求可能会在中途被back-end middleware给reset，但是正常情况下一定会被action所接受，这是request的终点；
+最终request会被返回给result，响应内容被封装在response里并返回给用户。
+
 patch模块：
 强化request与response对象，维持一个全局的application作用域，针对于每一个访问者的session作用域（处理cookie）
 
